@@ -1,0 +1,29 @@
+package espalindromo;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class EsPalindromo {
+
+    public static void main(String[] args) {
+        String cadena = args.length > 0 ? args[0] : "anita lava la tina";
+        boolean esPalindromo = esPalindromo(cadena);
+        System.out.println("Cadena: " + cadena);
+        System.out.println("Es palindromo? " + esPalindromo);
+    }
+    
+    public static boolean esPalindromo(String cadena){
+        Deque<Character> pila = new ArrayDeque<>();
+        for (char c : cadena.toCharArray()) {
+            pila.push(c);
+        }
+        char[] cadenaInvertida = new char[cadena.length()];
+        while (!pila.isEmpty()){
+            cadenaInvertida[cadena.length() - pila.size()] = pila.pop();
+        }
+        String cadenaInvertidaStr = new String(cadenaInvertida);
+        System.out.println("Cadena invetida: " + cadenaInvertidaStr);
+        
+        return cadena.equals(cadenaInvertidaStr);
+    }
+}
